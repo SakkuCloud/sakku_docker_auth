@@ -64,15 +64,15 @@ func main() {
 	}
 
 	client := &http.Client{}
-	req, err := http.NewRequest("POST", "https://api.sakku.cloud/service/users/dockerReg", bytes.NewBuffer(values))
+	req, err := http.NewRequest("POST", util.SakkuDockerRegServiceAddr, bytes.NewBuffer(values))
 	if err != nil{
 		fmt.Println("Error Code 3: Cannot create request to Sakku docker reg authorization server")
 		os.Exit(util.ErrorExitCode)
 	}
 
 	req.Header.Add("Content-Type","Application/JSON")
-	req.Header.Add("service","123")
-	req.Header.Add("service-key","123")
+	req.Header.Add("service",util.SakkuDockerRegServiceName)
+	req.Header.Add("service-key",util.SakkuDockerRegServiceKey)
 	rsp, err := client.Do(req)
 	if err != nil{
 		fmt.Println("Error Code 4: Cannot connect to Sakku docker reg authorization server")

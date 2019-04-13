@@ -1,0 +1,11 @@
+package util
+
+const(
+	SakkuAuthServiceAddr string = "ADDR"
+	SakkuAuthServiceName string = "NAME"
+	SakkuAuthServiceKey string = "KEY"
+
+	SakkuDockerRegServiceAddr string = "ADDR"
+	SakkuDockerRegServiceName string = "NAME"
+	SakkuDockerRegServiceKey string = "KEY"
+)

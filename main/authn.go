@@ -33,15 +33,15 @@ func main() {
 	}
 
 	client := &http.Client{}
-	req, err := http.NewRequest("POST", "https://api.sakku.cloud/service/users/authenticate", bytes.NewBuffer(values))
+	req, err := http.NewRequest("POST", util.SakkuAuthServiceAddr, bytes.NewBuffer(values))
 	if err != nil{
 		fmt.Println("Error Code 3: Cannot create request to Sakku authenticate server")
 		os.Exit(util.ErrorExitCode)
 	}
 
 	req.Header.Add("Content-Type","Application/JSON")
-	req.Header.Add("service","123")
-	req.Header.Add("service-key","123")
+	req.Header.Add("service",util.SakkuAuthServiceName)
+	req.Header.Add("service-key",util.SakkuAuthServiceKey)
 	rsp, err := client.Do(req)
 	if err != nil{
 		fmt.Println("Error Code 4: Cannot connect to Sakku authenticate server")
