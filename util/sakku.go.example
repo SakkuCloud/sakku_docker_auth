@@ -1,11 +1,15 @@
 package util
 
 const(
-	SakkuAuthServiceAddr string = "ADDR"
-	SakkuAuthServiceName string = "NAME"
-	SakkuAuthServiceKey string = "KEY"
+	SakkuAuthServiceAddr string = "https://api.sakku.cloud/service/users/authenticate"
+	SakkuAuthServiceName string = "123"
+	SakkuAuthServiceNameHeader string = "service"
+	SakkuAuthServiceKey string = "123"
+	SakkuAuthServiceKeyHeader string = "service-key"
 
-	SakkuDockerRegServiceAddr string = "ADDR"
-	SakkuDockerRegServiceName string = "NAME"
-	SakkuDockerRegServiceKey string = "KEY"
+	SakkuDockerRegServiceAddr string = "https://api.sakku.cloud/service/users/dockerReg"
+	SakkuDockerRegServiceName string = "123"
+	SakkuDockerRegServiceNameHeader string = "service"
+	SakkuDockerRegServiceKey string = "123"
+	SakkuDockerRegServiceKeyHeader string = "service-key"
 )

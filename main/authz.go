@@ -71,8 +71,8 @@ func main() {
 	}
 
 	req.Header.Add("Content-Type","Application/JSON")
-	req.Header.Add("service",util.SakkuDockerRegServiceName)
-	req.Header.Add("service-key",util.SakkuDockerRegServiceKey)
+	req.Header.Add(util.SakkuDockerRegServiceNameHeader,util.SakkuDockerRegServiceName)
+	req.Header.Add(util.SakkuDockerRegServiceKeyHeader,util.SakkuDockerRegServiceKey)
 	rsp, err := client.Do(req)
 	if err != nil{
 		fmt.Println("Error Code 4: Cannot connect to Sakku docker reg authorization server")

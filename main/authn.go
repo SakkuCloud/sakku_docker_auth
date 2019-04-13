@@ -40,8 +40,8 @@ func main() {
 	}
 
 	req.Header.Add("Content-Type","Application/JSON")
-	req.Header.Add("service",util.SakkuAuthServiceName)
-	req.Header.Add("service-key",util.SakkuAuthServiceKey)
+	req.Header.Add(util.SakkuAuthServiceNameHeader,util.SakkuAuthServiceName)
+	req.Header.Add(util.SakkuAuthServiceKeyHeader,util.SakkuAuthServiceKey)
 	rsp, err := client.Do(req)
 	if err != nil{
 		fmt.Println("Error Code 4: Cannot connect to Sakku authenticate server")
