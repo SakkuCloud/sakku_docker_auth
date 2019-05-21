@@ -23,9 +23,9 @@ type DockerRegAPIRequest struct {
 }
 
 type DockerRegADIResponse struct {
-	Code    string                     `json:"code"`
+	Code    int                     `json:"code"`
 	Message string                     `json:"message"`
-	Error   string                     `json:"error"`
+	Error   bool                     `json:"error"`
 	Result  DockerRegADIResponseResult `json:"result"`
 }
 
@@ -33,7 +33,7 @@ type DockerRegADIResponseResult struct {
 	Actions string `json:"actions"`
 }
 
-func isAuthorized(reqActions []string, rspActions string) bool{
+func isAuthorized(reqActions []string, rspActions string) bool {
 	for _, action := range reqActions {
 		if !strings.Contains(rspActions, action) {
 			return false
@@ -58,29 +58,29 @@ func main() {
 	dockerRegReq.Name = authReqInfo.Name
 
 	values, err := json.Marshal(dockerRegReq)
-	if err != nil{
+	if err != nil {
 		fmt.Println("Error Code 2: Cannot parse the input")
 		os.Exit(util.ErrorExitCode)
 	}
 
 	client := &http.Client{}
 	req, err := http.NewRequest("POST", util.SakkuDockerRegServiceAddr, bytes.NewBuffer(values))
-	if err != nil{
+	if err != nil {
 		fmt.Println("Error Code 3: Cannot create request to Sakku docker reg authorization server")
 		os.Exit(util.ErrorExitCode)
 	}
 
-	req.Header.Add("Content-Type","Application/JSON")
-	req.Header.Add(util.SakkuDockerRegServiceNameHeader,util.SakkuDockerRegServiceName)
-	req.Header.Add(util.SakkuDockerRegServiceKeyHeader,util.SakkuDockerRegServiceKey)
+	req.Header.Add("Content-Type", "Application/JSON")
+	req.Header.Add(util.SakkuDockerRegServiceNameHeader, util.SakkuDockerRegServiceName)
+	req.Header.Add(util.SakkuDockerRegServiceKeyHeader, util.SakkuDockerRegServiceKey)
 	rsp, err := client.Do(req)
-	if err != nil{
+	if err != nil {
 		fmt.Println("Error Code 4: Cannot connect to Sakku docker reg authorization server")
 		os.Exit(util.ErrorExitCode)
 	}
 
 	rspData, err := ioutil.ReadAll(rsp.Body)
-	if err != nil{
+	if err != nil {
 		fmt.Println("Error Code 4: Cannot parse data from Sakku docker reg authorization server")
 		os.Exit(util.ErrorExitCode)
 	}
